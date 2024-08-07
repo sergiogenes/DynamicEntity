@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://sergio_genes:Java_Adm1n_2024@mongodb:27017/dynamicDB?authSource=admin
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: sergio_genes
+      MONGO_INITDB_ROOT_PASSWORD: Java_Adm1n_2024
+      MONGO_INITDB_DATABASE: dynamicDB
